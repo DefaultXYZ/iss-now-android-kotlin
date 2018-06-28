@@ -29,7 +29,7 @@ class MainActivity : MapActivity() {
         viewModel.getLastPosition().observe(this, Observer {
             if (it == null) return@Observer
 
-            MapboxUtils.upsertIss(it, mapboxMap)
+            MapboxUtils.upsertIss(applicationContext, it, mapboxMap)
 
             val cameraPosition = CameraPosition.Builder()
                     .target(mapboxMap.markers[0].position)
