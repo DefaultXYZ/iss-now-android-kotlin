@@ -10,8 +10,6 @@
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:mapbox_cameraTargetLat="-36.84"
-        app:mapbox_cameraTargetLng="174.76"
-        app:mapbox_styleUrl="@string/mapbox_style_mapbox_streets"/>
+        app:mapbox_styleUrl="@string/mapbox_style_mapbox_streets" />
 
 </android.support.constraint.ConstraintLayout>
