@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ISS Now</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiZGVmYXVsdHh5eiIsImEiOiJjaml5M3A0MTYwNXh1M3FzYjZteXNldWdtIn0.Gd1UZKdAoU3XCxxm8zoaWw</string>
 </resources>
