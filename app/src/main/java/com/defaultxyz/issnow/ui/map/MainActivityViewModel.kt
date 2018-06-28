@@ -4,6 +4,8 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.defaultxyz.issnow.data.model.IssPosition
+import javax.inject.Inject
+import javax.inject.Singleton
 
 class MainActivityViewModel : ViewModel() {
     lateinit var position: LiveData<IssPosition>
@@ -13,7 +15,8 @@ class MainActivityViewModel : ViewModel() {
     }
 
     @Suppress("UNCHECKED_CAST")
-    class Factory : ViewModelProvider.Factory {
+    @Singleton
+    class Factory @Inject constructor() : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return MainActivityViewModel() as T
         }

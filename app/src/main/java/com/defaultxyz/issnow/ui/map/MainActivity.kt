@@ -3,6 +3,7 @@ package com.defaultxyz.issnow.ui.map
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import com.defaultxyz.issnow.MainApplication
 import com.defaultxyz.issnow.R
 import com.defaultxyz.issnow.ui.utils.MapActivity
 import com.mapbox.mapboxsdk.maps.MapboxMap
@@ -16,6 +17,7 @@ class MainActivity : MapActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         super.onCreateMap(savedInstanceState)
+        (application as MainApplication).injector.inject(this)
         viewModel = ViewModelProviders.of(this, vmFactory)[MainActivityViewModel::class.java]
     }
 
