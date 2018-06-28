@@ -7,8 +7,8 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity(tableName = "tb_iss_position", indices = [(Index(value = ["timestamp"], unique = true))])
 data class IssPosition @Ignore constructor(val timestamp: Long,
-                                           val longitude: Double,
-                                           val latitude: Double) {
+                                           val latitude: Double,
+                                           val longitude: Double) {
     @field:PrimaryKey(autoGenerate = true)
     var id: Int? = null
         private set
@@ -16,8 +16,8 @@ data class IssPosition @Ignore constructor(val timestamp: Long,
     @Ignore
     var astros: List<IssAstro> = emptyList()
 
-    constructor(id: Int, timestamp: Long, longitude: Double,
-                latitude: Double) : this(timestamp, longitude, latitude) {
+    constructor(id: Int, timestamp: Long, latitude: Double,
+                longitude: Double) : this(timestamp, latitude, longitude) {
         this.id = id
     }
 
