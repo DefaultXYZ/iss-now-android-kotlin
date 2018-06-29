@@ -1,10 +1,7 @@
 package com.defaultxyz.issnow
 
 import android.app.Application
-import com.defaultxyz.issnow.injection.AppModule
-import com.defaultxyz.issnow.injection.DaggerInjector
-import com.defaultxyz.issnow.injection.DataModule
-import com.defaultxyz.issnow.injection.Injector
+import com.defaultxyz.issnow.injection.*
 import com.mapbox.mapboxsdk.Mapbox
 
 class MainApplication : Application() {
@@ -16,6 +13,7 @@ class MainApplication : Application() {
         injector = DaggerInjector.builder()
                 .appModule(AppModule(this))
                 .dataModule(DataModule())
+                .networkModule(NetworkModule())
                 .build()
     }
 }

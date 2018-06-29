@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.defaultxyz.issnow.MainApplication
 import com.defaultxyz.issnow.R
 import com.defaultxyz.issnow.ui.utils.MapActivity
-import com.defaultxyz.issnow.utils.MapboxUtils
+import com.defaultxyz.issnow.utils.MapboxUtil
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.maps.MapboxMap
@@ -15,6 +15,8 @@ import javax.inject.Inject
 class MainActivity : MapActivity() {
     @Inject lateinit var vmFactory: MainActivityViewModel.Factory
     private lateinit var viewModel: MainActivityViewModel
+
+    private var shouldChangeCameraPosition = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,13 +31,15 @@ class MainActivity : MapActivity() {
         viewModel.getLastPosition().observe(this, Observer {
             if (it == null) return@Observer
 
-            MapboxUtils.upsertIss(applicationContext, it, mapboxMap)
+            MapboxUtil.upsertIss(applicationContext, it, mapboxMap)
 
-            val cameraPosition = CameraPosition.Builder()
-                    .target(mapboxMap.markers[0].position)
-                    .zoom(15.0)
-                    .build()
-            mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+            if (shouldChangeCameraPosition) {
+                val cameraPosition = CameraPosition.Builder()
+                        .target(mapboxMap.markers[0].position)
+                        .build()
+                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+                shouldChangeCameraPosition = false
+            }
         })
     }
 }

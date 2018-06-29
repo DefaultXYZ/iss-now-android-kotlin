@@ -8,7 +8,7 @@ import com.mapbox.mapboxsdk.annotations.MarkerOptions
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapboxMap
 
-object MapboxUtils {
+object MapboxUtil {
 
     fun upsertIss(context: Context, issPosition: IssPosition, mapboxMap: MapboxMap) {
         if (mapboxMap.markers.isEmpty()) {
