@@ -20,7 +20,7 @@ interface IssDao {
     fun clearOld(now: Long)
 
     @Query("SELECT * FROM tb_iss_astro WHERE issId = :issId")
-    fun getAstros(issId: Int): LiveData<List<IssAstro>>
+    fun getAstros(issId: Int): List<IssAstro>
 
     @Query("DELETE FROM tb_iss_astro")
     fun clearAstros()

@@ -16,6 +16,7 @@ class MainApplication : Application() {
         injector = DaggerInjector.builder()
                 .appModule(AppModule(this))
                 .dataModule(DataModule())
+
                 .build()
     }
 }
