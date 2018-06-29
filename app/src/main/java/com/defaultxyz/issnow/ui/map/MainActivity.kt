@@ -16,6 +16,8 @@ class MainActivity : MapActivity() {
     @Inject lateinit var vmFactory: MainActivityViewModel.Factory
     private lateinit var viewModel: MainActivityViewModel
 
+    private var shouldChangeCameraPosition = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,11 +33,13 @@ class MainActivity : MapActivity() {
 
             MapboxUtil.upsertIss(applicationContext, it, mapboxMap)
 
-            val cameraPosition = CameraPosition.Builder()
-                    .target(mapboxMap.markers[0].position)
-                    .zoom(15.0)
-                    .build()
-            mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+            if (shouldChangeCameraPosition) {
+                val cameraPosition = CameraPosition.Builder()
+                        .target(mapboxMap.markers[0].position)
+                        .build()
+                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+                shouldChangeCameraPosition = false
+            }
         })
     }
 }
